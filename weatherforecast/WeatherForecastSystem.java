@@ -1,20 +1,12 @@
 package weatherforecast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class WeatherForecastSystem {
-    List<WeatherService> weatherServices;
+    WeatherService weatherService;
 
-    public WeatherForecastSystem(WeatherService... weatherServices) {
-        this.weatherServices = new ArrayList<>();
-
-        for (WeatherService weatherService : weatherServices) {
-            this.weatherServices.add(weatherService);
-        }
+    public WeatherForecastSystem() {
     }
 
-    public void getWeather() {
+    public void getWeather(WeatherService... weatherServices) {
         for (WeatherService weatherService : weatherServices) {
             weatherService.getWeatherData();
         }

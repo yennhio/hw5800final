@@ -30,24 +30,33 @@ public class WeatherServiceSubject implements WeatherSubject {
 
     public void setTemp(double temp) {
         this.temp = temp;
-        setWeather(precip, humidity, temp);
+        System.out.println("Updating temperature");
+        for (WeatherObserver observer : observers) {
+            observer.update("temperature");
+        }
     }
 
     public void setPrecip(double precip) {
         this.precip = precip;
-        setWeather(precip, humidity, temp);
+        System.out.println("Updating precipitation");
+        for (WeatherObserver observer : observers) {
+            observer.update("precipitation");
+        }
     }
 
     public void setHumidity(double humidity) {
         this.humidity = humidity;
-        setWeather(precip, humidity, temp);
-    }
+        System.out.println("Updating humidity");
+        for (WeatherObserver observer : observers) {
+            observer.update("humidity");
+        }    }
 
     @Override
     public void setWeather(double precip, double humidity, double temp) {
         this.temp = temp;
         this.precip = precip;
         this.humidity = humidity;
+        System.out.println("Updating weather");
         notifyObservers();
     }
 
@@ -64,7 +73,7 @@ public class WeatherServiceSubject implements WeatherSubject {
     @Override
     public void notifyObservers() {
         for (WeatherObserver observer : observers) {
-            observer.update();
+            observer.update(null);
         }
     }
 

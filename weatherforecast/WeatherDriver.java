@@ -6,15 +6,27 @@ public class WeatherDriver {
 
         WeatherServiceSubject weatherSubject = new WeatherServiceSubject(30, 20, 25);
         WeatherApi weatherApi = new WeatherApi(weatherSubject);
-        WeatherForecastSystem forecast = new WeatherForecastSystem(weatherApi);
+        WeatherGov weatherGov = new WeatherGov(weatherSubject);
+        OpenMeteo openMeteo = new OpenMeteo(weatherSubject);
+
+        WeatherForecastSystem forecast = new WeatherForecastSystem();
         User bob = new User("Bob");
+        User alice = new User("Alice");
 
-        System.out.println("First weather update");
-        weatherSubject.setHumidity(25);
 
-        forecast.getWeather();
+        System.out.println("Initial weather:");
+        forecast.getWeather(weatherApi, weatherGov, openMeteo);
 
-        bob.subscribeToService(weatherApi);
+        bob.subscribeToService(weatherApi, "temperature", "precipitation");
+        alice.subscribeToService(openMeteo, "humidity");
+
+
+        weatherSubject.setTemp(24);
+
+        weatherSubject.setPrecip(34);
+
+        weatherSubject.setHumidity(40);
+
 
     }
     

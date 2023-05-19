@@ -2,6 +2,6 @@ package weatherforecast;
 
 public interface WeatherService {
     void getWeatherData();
-    void sendNotifs();
+    void sendNotifs(String property);
     void registerUser(User user, String... properties);
 }

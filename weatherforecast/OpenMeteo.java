@@ -3,13 +3,13 @@ package weatherforecast;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WeatherApi implements WeatherService, WeatherObserver {
+public class OpenMeteo implements WeatherService, WeatherObserver {
 
     private WeatherServiceSubject weatherSubject;
     private HashMap<String, User> subscribers = new HashMap<>();
 
 
-    public WeatherApi (WeatherServiceSubject weatherSubject){
+    public OpenMeteo (WeatherServiceSubject weatherSubject){
         subscribers = new HashMap<>();
         this.weatherSubject = weatherSubject;
         this.weatherSubject.registerObserver(this);
@@ -17,19 +17,19 @@ public class WeatherApi implements WeatherService, WeatherObserver {
 
     @Override
     public void update(String property) {
-        System.out.println("Updating WeatherAPI ");
-        System.out.println("Temperature: " + weatherSubject.getTemp()*9/5+32 + " degrees F");
-        System.out.println("Humidity: " + weatherSubject.getHumidity() + "%");
-        System.out.println("Precipitation: " + weatherSubject.getPrecip() + "%");
+        System.out.println("Updating OpenMeteo");
+        System.out.println("Temperature: " + weatherSubject.getTemp() + " degrees C");
+        System.out.println("Humidity dew point: " + weatherSubject.getHumidity()/2 + " degrees C Td");
+        System.out.println("Precipitation: " + weatherSubject.getPrecip()/6 + " cm");
         sendNotifs(property);
     }
 
     @Override
     public void getWeatherData() {
-        System.out.println("WeatherAPI ");
-        System.out.println("Temperature: " + weatherSubject.getTemp()*9/5+32 + " degrees F");
-        System.out.println("Humidity: " + weatherSubject.getHumidity() + "%");
-        System.out.println("Precipitation: " + weatherSubject.getPrecip() + "%");
+        System.out.println("OpenMeteo");
+        System.out.println("Temperature: " + weatherSubject.getTemp() + " degrees C");
+        System.out.println("Humidity dew point: " + weatherSubject.getHumidity()/2 + " degrees C Td");
+        System.out.println("Precipitation: " + weatherSubject.getPrecip()/6 + " cm");
     }
 
     @Override
@@ -39,15 +39,15 @@ public class WeatherApi implements WeatherService, WeatherObserver {
             User userToReceiveNotif;
             if (prop.equals("humidity") && prop.equals(property)) {
                 userToReceiveNotif = subscriber.getValue(); 
-                userToReceiveNotif.receiveNotifs(this, prop, weatherSubject.getHumidity());
+                userToReceiveNotif.receiveNotifs(this, prop, weatherSubject.getHumidity()/2);
             }
             else if (prop.equals("temperature") && prop.equals(property)) {
                 userToReceiveNotif = subscriber.getValue(); 
-                userToReceiveNotif.receiveNotifs(this, prop, weatherSubject.getTemp()*9/5+32);
+                userToReceiveNotif.receiveNotifs(this, prop, weatherSubject.getTemp());
             }
             else if (prop.equals("precipitation") && prop.equals(property)){
                 userToReceiveNotif = subscriber.getValue(); 
-                userToReceiveNotif.receiveNotifs(this, prop, weatherSubject.getPrecip());
+                userToReceiveNotif.receiveNotifs(this, prop, weatherSubject.getPrecip()/6);
             }
         }
         
@@ -57,7 +57,7 @@ public class WeatherApi implements WeatherService, WeatherObserver {
     public void registerUser(User user, String... properties) {
         for (String property : properties) {
             subscribers.put(property, user);
-            System.out.println(user.getName() + " subscribing to WeatherAPI for " + property);
+            System.out.println(user.getName() + " subscribing to OpenMeteo for " + property);
         }
     }
 }
