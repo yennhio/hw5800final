@@ -1,5 +1,6 @@
-import weatherforecast.*;
-public class StrategyMain {
+package weatherforecast;
+
+public class WeatherDriver {
 
     public static void main (String[] args) {
 
@@ -28,4 +29,5 @@ public class StrategyMain {
 
 
     }
+    
 }

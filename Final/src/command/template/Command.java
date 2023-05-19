@@ -1,4 +1,6 @@
 package command.template;
 
-public class Command {
+public interface Command {
+
+    public void execute();
 }
