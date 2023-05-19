@@ -18,7 +18,7 @@ public class WeatherApi implements WeatherService, WeatherObserver {
     @Override
     public void update(String property) {
         System.out.println("Updating WeatherAPI ");
-        System.out.println("Temperature: " + weatherSubject.getTemp()*9/5+32 + " degrees F");
+        System.out.println("Temperature: " + ((weatherSubject.getTemp()*9/5)+32) + " degrees F");
         System.out.println("Humidity: " + weatherSubject.getHumidity() + "%");
         System.out.println("Precipitation: " + weatherSubject.getPrecip() + "%");
         sendNotifs(property);
@@ -27,7 +27,7 @@ public class WeatherApi implements WeatherService, WeatherObserver {
     @Override
     public void getWeatherData() {
         System.out.println("WeatherAPI ");
-        System.out.println("Temperature: " + weatherSubject.getTemp()*9/5+32 + " degrees F");
+        System.out.println("Temperature: " + ((weatherSubject.getTemp()*9/5)+32) + " degrees F");
         System.out.println("Humidity: " + weatherSubject.getHumidity() + "%");
         System.out.println("Precipitation: " + weatherSubject.getPrecip() + "%");
     }
@@ -43,7 +43,7 @@ public class WeatherApi implements WeatherService, WeatherObserver {
             }
             else if (prop.equals("temperature") && prop.equals(property)) {
                 userToReceiveNotif = subscriber.getValue(); 
-                userToReceiveNotif.receiveNotifs(this, prop, weatherSubject.getTemp()*9/5+32);
+                userToReceiveNotif.receiveNotifs(this, prop, (weatherSubject.getTemp()*9/5+32));
             }
             else if (prop.equals("precipitation") && prop.equals(property)){
                 userToReceiveNotif = subscriber.getValue(); 
