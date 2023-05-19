@@ -6,4 +6,8 @@ public class Request {
     public Request(String command){
         this.command = command;
     }
+
+    public String getCommand() {
+        return command;
+    }
 }
