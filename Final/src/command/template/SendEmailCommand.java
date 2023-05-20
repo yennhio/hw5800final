@@ -9,6 +9,7 @@ public class SendEmailCommand implements Command{
 
     @Override
     public void execute() {
+        System.out.println("Sending an email to " + email.getRecipientEmail() + ", Content: " + email.getContent());
 
     }
 }

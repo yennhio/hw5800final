@@ -1,7 +1,8 @@
 package command.template;
 
 public class Request {
-    String command;
+    private String command;
+
 
     public Request(String command){
         this.command = command;

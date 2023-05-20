@@ -8,4 +8,12 @@ public class Reminder {
         this.time = time;
         this.content = content;
     }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }

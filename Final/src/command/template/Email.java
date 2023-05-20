@@ -8,4 +8,12 @@ public class Email {
         this.recipientEmail = recipientEmail;
         this.content = content;
     }
+
+    public String getRecipientEmail() {
+        return recipientEmail;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }

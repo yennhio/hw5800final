@@ -10,7 +10,7 @@ public abstract class ProcessingRequestTemplate {
         if (validateInput(request)) {
             logRequest(request);
             notifyUser(request);
-            execute();
+            execute(request);
         }
     }
 
@@ -27,14 +27,12 @@ public abstract class ProcessingRequestTemplate {
     }
 
     private void logRequest(Request request) {
-        System.out.println(LocalDateTime.now());
-        System.out.println("The request has been logged");
-        System.out.println("Content:" + request.getCommand());
+        System.out.println("The request \"" + request.getCommand() + "\" has been logged at " + LocalDateTime.now());
     }
 
     private void notifyUser(Request request) {
         System.out.println("The request has been notified to the user");
     }
 
-    public abstract void execute();
+    public abstract void execute(Request request);
 }

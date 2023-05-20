@@ -9,6 +9,6 @@ public class PlayMusicCommand implements Command{
 
     @Override
     public void execute() {
-
+        System.out.println("Playing the music " + music.getName() + " by " + music.getSinger());
     }
 }

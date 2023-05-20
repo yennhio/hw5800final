@@ -9,4 +9,12 @@ public class Music{
         this.singer = singer;
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSinger() {
+        return singer;
+    }
 }

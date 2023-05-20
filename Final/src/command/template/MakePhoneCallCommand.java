@@ -8,6 +8,6 @@ public class MakePhoneCallCommand implements Command{
     }
     @Override
     public void execute() {
-
+        System.out.println("Making a call to " + this.phoneNumber);
     }
 }

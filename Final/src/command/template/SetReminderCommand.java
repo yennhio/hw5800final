@@ -9,6 +9,7 @@ public class SetReminderCommand implements Command{
 
     @Override
     public void execute() {
+        System.out.println("Setting a reminder at " + reminder.getTime() + ", Content: " + reminder.getContent());
         
     }
 
